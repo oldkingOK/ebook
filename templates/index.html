@@ -46,16 +46,20 @@
             margin: 0;
             padding: 0;
         }
+        html{
+            overflow: hidden;
+        }
         .background-container {
             background-attachment: fixed;
             position: relative;
-            height: 100vh; /* 使用vh单位设置容器高度为视窗的100% */
+            height: 100%; /* 使用vh单位设置容器高度为视窗的100% */
             background-image: url('/static/YuukaNoa.png'), url('/static/OIP.jpg'); /* 左右图片的 URL */
             background-size: auto 100%, auto 100%; /* 设置两张背景图片的尺寸，宽度为原始宽度，高度为100% */
             background-position: left top, right top; /* 设置两张背景图片的位置 */
             background-repeat: no-repeat; /* 禁止背景图片重复 */
         }
         .content {
+            overflow: scroll;
             position: absolute;
             top: 0;
             height: 100%;
@@ -74,18 +78,17 @@
 <div class="background-container">
     <div class="content">
         {{ ok_content|safe }}
-        <div class="search">
-            <div class="arrow"></div>
-            <div class="serf" >
-                <h2 style="margin-bottom: 5px">Search Page</h2>
-                <div class="ser">
-                    <form id="searchForm"  method="GET">
-                        <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
+    </div>
+    <div class="search">
+        <div class="arrow"></div>
+        <div class="serf" >
+            <h2 style="margin-bottom: 5px">Search Page</h2>
+            <div class="ser">
+                <form id="searchForm"  method="GET">
+                    <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
+                    <button type="submit">Search</button>
+                </form>
             </div>
-
         </div>
     </div>
 </div>
