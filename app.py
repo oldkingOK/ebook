@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template
 import sqlite3
 
 """
@@ -10,10 +10,8 @@ import sqlite3
 
 app = Flask(__name__)
 
-INDEX = ""
-with open("index.html", "r", encoding="utf-8") as f:
-    INDEX = f.read()
-IMG_RES = '<img height=128 width=128 src="{{ url_for("static", filename="aniyah_img.png") }}" alt="aniya_eat">'
+INDEX = "./index.html"
+IMG_RES = '<img height=128 width=128 src="/static/aniyah_img.png" alt="aniya_eat">'
 
 def check_img(text: str):
     cur_index = 0 # 当前索引
@@ -28,11 +26,10 @@ def check_img(text: str):
 
 @app.route('/')
 def sum_numbers():
-    r = INDEX
 
     name = request.args.get('name')
     if name is None:
-        return r
+        return render_template(INDEX)
 
     conn = sqlite3.connect('ebook2024-05-13.db')
     cursor = conn.cursor()
@@ -42,6 +39,7 @@ def sum_numbers():
     record = cursor.fetchall()
     conn.close()
 
+    r = ""
     if record:
         # If the record exists, return the result
         for path, text in record:
@@ -53,7 +51,7 @@ def sum_numbers():
         # If the record does not exist, return an error message
         r += "未找到记录"
 
-    return render_template_string(r)
+    return render_template(INDEX, ok_content=r)
 
 if __name__ == '__main__':
     app.run()

@@ -50,7 +50,7 @@
             background-attachment: fixed;
             position: relative;
             height: 100vh; /* 使用vh单位设置容器高度为视窗的100% */
-            background-image: url('YuukaNoa.png'), url('OIP.jpg'); /* 左右图片的 URL */
+            background-image: url({{ url_for("static", filename='YuukaNoa.png') }}), url({{ url_for("static", filename='OIP.jpg') }}); /* 左右图片的 URL */
             background-size: auto 100%, auto 100%; /* 设置两张背景图片的尺寸，宽度为原始宽度，高度为100% */
             background-position: left top, right top; /* 设置两张背景图片的位置 */
             background-repeat: no-repeat; /* 禁止背景图片重复 */
@@ -63,7 +63,7 @@
             transform: translateX(-50%); /* 水平居中 */
             width: 80%; /* 假设内容占据的宽度为整个页面的80% */
             text-align: center; /* 文字居中 */
-            color: #fff; /* 文字颜色 */
+            color: #191616; /* 文字颜色 */
             padding: 20px; /* 内边距 */
             background-color: rgba(224, 224, 224, 0.4); /* 背景色，透明度为50% */
         }
@@ -73,6 +73,7 @@
 
 <div class="background-container">
     <div class="content">
+        {{ ok_content|safe }}
         <div class="search">
             <div class="arrow"></div>
             <div class="serf" >
