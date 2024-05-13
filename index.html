@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .ser{
+            margin-left: 60px;
+            background: #fff;
+
+        }
+        .serii{
+            height: 100px;
+            width: 320px;
+            border: rgba(224, 224, 224, 0.38) solid 2px;
+
+            margin: 0 auto;
+        }
+    </style>
     <title>Search Form</title>
 </head>
 <body>
-<h1>Search Page</h1>
-<form id="searchForm" action="search_results.html" method="GET">
-    <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
-    <button type="submit">Search</button>
-</form>
+<div class="serii" >
+    <h2 style=" margin-left: 60px">Search Page</h2>
+    <div class="ser">
+        <form id="searchForm" action="hh.html" method="GET">
+            <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
 
 <script>
 
@@ -22,10 +40,10 @@
         // 如果输入值不为空
         if (searchTerm.trim() !== "") {
             // 构建跳转 URL，并将搜索词作为参数传递
-            var url = "?name=" + encodeURIComponent(searchTerm);
+            var u = "hh.html?name=" + encodeURIComponent(searchTerm);
 
             // 跳转到新页面
-            window.location.href = url;
+            window.location.href = u;
         }
     });
 </script>
