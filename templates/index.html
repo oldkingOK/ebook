@@ -35,9 +35,7 @@
             background-color: #cccccc;
             display: none;
         }
-        .search:hover .serf{
-            display: block;
-        }
+ 
         .search:hover .arrow{
             border-right: 18px solid #ec5b0c;
         }
@@ -108,26 +106,34 @@
         }
     });
 
-    var searchForm = document.getElementById("searchForm");
+    var searchElement = document.querySelector('.search');
     var serfDiv = document.querySelector(".serf");
     var isComposing = false;
+   
 
-    // 当搜索框获得焦点或者正在输入时，保持 .serf 元素的显示
-    searchForm.addEventListener("focus", function(event) {
-        serfDiv.style.display = "block";
-    }, true);
+    // 添加鼠标进入事件监听器
+    searchElement.addEventListener('mouseenter', function() {
+        serfDiv.style.display = 'block'; // 当鼠标进入时，设置 .serf 的 display 为 block
+    });
 
-    searchForm.addEventListener("compositionstart", function(event) {
+    // 添加鼠标离开事件监听器
+    searchElement.addEventListener('mouseleave', function() {
+        if(!isComposing){
+            serfDiv.style.display = 'none'; // 当鼠标离开时，设置 display 为 none
+        }
+
+    });
+
+
+    searchElement.addEventListener("compositionstart", function(event) {
         isComposing = true;
         serfDiv.style.display = "block";
     });
+    searchElement.addEventListener("compositionend", function(event) {
+        isComposing = false;
+    });
 
-    // 当搜索框失去焦点时，如果鼠标不在 .search 元素上且不在输入过程中，隐藏 .serf 元素
-    searchForm.addEventListener("blur", function(event) {
-        if (!document.querySelector(".search:hover") && !isComposing) {
-            serfDiv.style.display = "none";
-        }
-    }, true);
+  
 </script>
 </body>
 </html>
