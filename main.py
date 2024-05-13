@@ -26,18 +26,20 @@ def sum_numbers():
     cursor = conn.cursor()
 
     # Execute a SELECT query to retrieve the record with the given name
-    cursor.execute("SELECT Text FROM ebook WHERE name=?", (name,))
-    record = cursor.fetchone()
+    cursor.execute("SELECT Path, Text FROM ebook WHERE name=?", (name,))
+    record = cursor.fetchall()
     conn.close()
 
     if record:
         # If the record exists, return the result
-        result = record[0]
-        return r + str(result)
+        for path, text in record:
+            r += "<h2>{}</h2>".format(path)
+            r += text
     else:
         # If the record does not exist, return an error message
-        return r + "Record not found"
+        r += "未找到记录"
 
+    return r
 
 if __name__ == '__main__':
     app.run()
