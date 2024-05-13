@@ -24,6 +24,7 @@
             position: fixed;
             bottom: 20px;
             right: 40px;
+            z-index: 10;
         }
         .serf{
             height: 100px;
@@ -74,9 +75,6 @@
 <body>
 
 <div class="background-container">
-    <div class="content">
-        {{ ok_content|safe }}
-    </div>
     <div class="search">
         <div class="arrow"></div>
         <div class="serf" >
@@ -88,6 +86,10 @@
                 </form>
             </div>
         </div>
+    </div>
+    <!-- 因为放上面会挤压search 直接放下面会导致图层问题，所以放下面且加上index -->
+    <div class="content">
+        {{ ok_content|safe }}
     </div>
 </div>
 <script>
