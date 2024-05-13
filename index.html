@@ -1,37 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Form</title>
     <style>
-        .ser{
-            margin-left: 60px;
-            background: #fff;
-
+        .arrow{
+            width: 0;
+            height: 0;
+            border-right: 18px solid #862121;
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            display: block;
+        }
+        .search{
+            width: 500px;
+            height: 150px;
+            position: fixed;
+            bottom: 20px;
+            right: 40px;
         }
         .serf{
             height: 100px;
             width: 320px;
-            border: rgba(224, 224, 224, 0.38) solid 2px;
-
-            margin: 0 auto;
+            margin: 36px 0 0 150px;
+            border: #000000 solid 2px;
+            box-sizing: border-box;
+            padding-left: 50px;
+            background-color: #cccccc;
+            display: none;
         }
+        .search:hover .serf{
+            display: block;
+        }
+        .search:hover .arrow{
+            border-right: 18px solid #ec5b0c;
+        }
+
     </style>
-    <title>Search Form</title>
 </head>
 <body>
-<div class="serf" >
-    <h2 style=" margin-left: 60px">Search Page</h2>
-    <div class="ser">
-        <form id="searchForm" action="hh.html" method="GET">
-            <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
-            <button type="submit">Search</button>
-        </form>
+
+<div class="search">
+    <div class="arrow"></div>
+    <div class="serf" >
+        <h2 style="margin-bottom: 5px">Search Page</h2>
+        <div class="ser">
+            <form id="searchForm"  method="GET">
+                <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </div>
+
 </div>
 
 <script>
-
     document.getElementById("searchForm").addEventListener("submit", function(event) {
         // 阻止默认的表单提交行为
         event.preventDefault();
@@ -46,6 +75,28 @@
             window.location.href = url;
         }
     });
+
+    var searchForm = document.getElementById("searchForm");
+    var serfDiv = document.querySelector(".serf");
+    var isComposing = false;
+
+    // 当搜索框获得焦点或者正在输入时，保持 .serf 元素的显示
+    searchForm.addEventListener("focus", function(event) {
+        serfDiv.style.display = "block";
+    }, true);
+
+    searchForm.addEventListener("compositionstart", function(event) {
+        isComposing = true;
+        serfDiv.style.display = "block";
+    });
+
+    
+    // 当搜索框失去焦点时，如果鼠标不在 .search 元素上且不在输入过程中，隐藏 .serf 元素
+    searchForm.addEventListener("blur", function(event) {
+        if (!document.querySelector(".search:hover") && !isComposing) {
+            serfDiv.style.display = "none";
+        }
+    }, true);
 </script>
 </body>
 </html>
