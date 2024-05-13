@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search Form</title>
+    <title>eBook++</title>
     <style>
         .arrow{
             width: 0;
@@ -41,25 +41,53 @@
         .search:hover .arrow{
             border-right: 18px solid #ec5b0c;
         }
-
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .background-container {
+            background-attachment: fixed;
+            position: relative;
+            height: 100vh; /* 使用vh单位设置容器高度为视窗的100% */
+            background-image: url('YuukaNoa.png'), url('OIP.jpg'); /* 左右图片的 URL */
+            background-size: auto 100%, auto 100%; /* 设置两张背景图片的尺寸，宽度为原始宽度，高度为100% */
+            background-position: left top, right top; /* 设置两张背景图片的位置 */
+            background-repeat: no-repeat; /* 禁止背景图片重复 */
+        }
+        .content {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            left: 50%; /* 将内容居中 */
+            transform: translateX(-50%); /* 水平居中 */
+            width: 80%; /* 假设内容占据的宽度为整个页面的80% */
+            text-align: center; /* 文字居中 */
+            color: #fff; /* 文字颜色 */
+            padding: 20px; /* 内边距 */
+            background-color: rgba(224, 224, 224, 0.4); /* 背景色，透明度为50% */
+        }
     </style>
 </head>
 <body>
 
-<div class="search">
-    <div class="arrow"></div>
-    <div class="serf" >
-        <h2 style="margin-bottom: 5px">Search Page</h2>
-        <div class="ser">
-            <form id="searchForm"  method="GET">
-                <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
-                <button type="submit">Search</button>
-            </form>
+<div class="background-container">
+    <div class="content">
+        <div class="search">
+            <div class="arrow"></div>
+            <div class="serf" >
+                <h2 style="margin-bottom: 5px">Search Page</h2>
+                <div class="ser">
+                    <form id="searchForm"  method="GET">
+                        <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
-
 </div>
-
 <script>
     document.getElementById("searchForm").addEventListener("submit", function(event) {
         // 阻止默认的表单提交行为
@@ -90,7 +118,6 @@
         serfDiv.style.display = "block";
     });
 
-    
     // 当搜索框失去焦点时，如果鼠标不在 .search 元素上且不在输入过程中，隐藏 .serf 元素
     searchForm.addEventListener("blur", function(event) {
         if (!document.querySelector(".search:hover") && !isComposing) {
