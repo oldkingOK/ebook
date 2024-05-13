@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Form</title>
+</head>
+<body>
+<h1>Search Page</h1>
+<form id="searchForm" action="search_results.html" method="GET">
+    <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
+    <button type="submit">Search</button>
+</form>
+
+<script>
+
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+        // 阻止默认的表单提交行为
+        event.preventDefault();
+        // 获取搜索框中的输入值
+        var searchTerm = document.getElementById("searchInput").value;
+        // 如果输入值不为空
+        if (searchTerm.trim() !== "") {
+            // 构建跳转 URL，并将搜索词作为参数传递
+            var url = "?name=" + encodeURIComponent(searchTerm);
+
+            // 跳转到新页面
+            window.location.href = url;
+        }
+    });
+</script>
+</body>
+</html>
