@@ -35,7 +35,7 @@ def sum_numbers():
     cursor = conn.cursor()
 
     # Execute a SELECT query to retrieve the record with the given name
-    cursor.execute("SELECT Path, Text FROM ebook WHERE name=?", (name,))
+    cursor.execute("SELECT Path, Text FROM ebook WHERE name LIKE ?", (f"%{name}%",))
     record = cursor.fetchall()
     conn.close()
 
