@@ -40,10 +40,10 @@
         // 如果输入值不为空
         if (searchTerm.trim() !== "") {
             // 构建跳转 URL，并将搜索词作为参数传递
-            var u = "hh.html?name=" + encodeURIComponent(searchTerm);
+            var url = "?name=" + encodeURIComponent(searchTerm);
 
             // 跳转到新页面
-            window.location.href = u;
+            window.location.href = url;
         }
     });
 </script>
