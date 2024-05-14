@@ -105,23 +105,13 @@
     <!-- 因为放上面会挤压search 直接放下面会导致图层问题，所以放下面且加上index -->
     <div class="content">
         <div id="top"></div>
-        <div class="ok_content"><div>
+        <div class="ok_content">
+            <h1>E-Book</h1>    
+        <div>
     </div>
 </div>
-<script>
-    OML2D.loadOml2d({
-        models: [
-            {
-                path: '/static/ANIYA-walk/ANIYA.model3.json',
-                position: [60, 60],
-                scale: 0.06,
-                stageStyle: {
-                    height: 450
-                }
-            }
-        ]
-    });
 
+<script>
     var upImage = document.getElementById('upImage');
 
     // 鼠标悬停时更改图像源
@@ -185,7 +175,22 @@
     searchElement.addEventListener("compositionend", function(event) {
         isComposing = false;
     });
-  
 </script>
+
+<script>
+    OML2D.loadOml2d({
+        models: [
+            {
+                path: '/static/ANIYA-walk/ANIYA.model3.json',
+                position: [60, 60],
+                scale: 0.06,
+                stageStyle: {
+                    height: 450
+                }
+            }
+        ]
+    });
+</script>
+
 </body>
 </html>
