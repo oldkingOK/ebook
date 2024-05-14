@@ -22,18 +22,22 @@
             width: 500px;
             height: 150px;
             position: fixed;
-            bottom: 20px;
+            bottom: 5px;
             right: 40px;
             z-index: 10;
         }
         #up{
-            width: 100px;
-            height: 100px;
+            width: 30px;
+            height: 30px;
             position: fixed;
-            bottom: 320px;
-            right: 40px;
+            bottom: 140px;
+            right: 140px;
             z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .serf{
             height: 100px;
             width: 320px;
@@ -59,7 +63,7 @@
         .background-container {
             background-attachment: fixed;
             position: relative;
-            height: 100%; /* 使用vh单位设置容器高度为视窗的100% */
+            height: 100%;
             background-image: url('/static/YuukaNoa.png'), url('/static/OIP.jpg'); /* 左右图片的 URL */
             background-size: auto 100%, auto 100%; /* 设置两张背景图片的尺寸，宽度为原始宽度，高度为100% */
             background-position: left top, right top; /* 设置两张背景图片的位置 */
@@ -95,7 +99,7 @@
             </div>
         </div>
     </div>
-    <div id="up" ><a href="#top">sss</a></div>
+    <div id="up" ><a href="#top"><img id="upImage" src="../static/upload.svg"></a></div>
     <!-- 因为放上面会挤压search 直接放下面会导致图层问题，所以放下面且加上index -->
     <div class="content">
         <div id="top"></div>
@@ -103,6 +107,25 @@
     </div>
 </div>
 <script>
+
+
+    var upImage = document.getElementById('upImage');
+
+    // 鼠标悬停时更改图像源
+    document.getElementById('up').addEventListener('mouseover', function() {
+        upImage.src = '../static/upload_hover.svg'; // 您需要将此路径替换为鼠标悬停时要显示的图像的路径
+    });
+
+    // 鼠标离开时恢复原始图像源
+    document.getElementById('up').addEventListener('mouseout', function() {
+        upImage.src = '../static/upload.svg'; // 您需要将此路径替换为原始图像的路径
+    });
+
+    // 鼠标离开时恢复原始图像源
+    document.getElementById('up').addEventListener('mouseout', function() {
+        upImage.src = '../static/upload.svg'; // 您需要将此路径替换为原始图像的路径
+    });
+
     document.getElementById("searchForm").addEventListener("submit", function(event) {
         // 阻止默认的表单提交行为
         event.preventDefault();
@@ -143,8 +166,6 @@
             serfDiv.style.display = 'none'; // 当点击的元素不是 searchElement 或其内部的任何元素时，设置 display 为 none
         }
     });
-
-
 
     searchElement.addEventListener("compositionstart", function(event) {
         isComposing = true;
