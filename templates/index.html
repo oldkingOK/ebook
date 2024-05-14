@@ -30,8 +30,8 @@
             width: 30px;
             height: 30px;
             position: fixed;
-            bottom: 140px;
-            right: 140px;
+            bottom: 15%;
+            right: 15%;
             z-index: 10;
             display: flex;
             justify-content: center;
@@ -105,7 +105,9 @@
     <!-- 因为放上面会挤压search 直接放下面会导致图层问题，所以放下面且加上index -->
     <div class="content">
         <div id="top"></div>
-        {{ ok_content|safe }}
+        <div class="ok_content">
+            {{ ok_content|safe }}
+        <div>
     </div>
 </div>
 <script>
@@ -148,7 +150,7 @@
         if (searchTerm.trim() !== "") {
             // 构建跳转 URL，并将搜索词作为参数传递
             $.get('/?name=' + encodeURIComponent(searchTerm), function(data) {
-                $('.content').html(data);
+                $('.ok_content').html(data);
             });
         }
     });
