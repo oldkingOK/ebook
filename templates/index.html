@@ -83,6 +83,8 @@
             background-color: rgba(224, 224, 224, 0.4); /* 背景色，透明度为50% */
         }
     </style>
+    <script src="/static/scripts/http_unpkg.com_oh-my-live2d@latest.js"></script>
+    <script src="/static/scripts/jquery.min.js"></script>
 </head>
 <body>
 
@@ -107,7 +109,18 @@
     </div>
 </div>
 <script>
-
+    OML2D.loadOml2d({
+        models: [
+            {
+                path: '/static/ANIYA-walk/ANIYA.model3.json',
+                position: [60, 60],
+                scale: 0.06,
+                stageStyle: {
+                    height: 450
+                }
+            }
+        ]
+    });
 
     var upImage = document.getElementById('upImage');
 
@@ -134,10 +147,9 @@
         // 如果输入值不为空
         if (searchTerm.trim() !== "") {
             // 构建跳转 URL，并将搜索词作为参数传递
-            var url = "?name=" + encodeURIComponent(searchTerm);
-
-            // 跳转到新页面
-            window.location.href = url;
+            $.get('/?name=' + encodeURIComponent(searchTerm), function(data) {
+                $('.content').html(data);
+            });
         }
     });
 
@@ -174,7 +186,6 @@
     searchElement.addEventListener("compositionend", function(event) {
         isComposing = false;
     });
-
   
 </script>
 </body>
