@@ -26,6 +26,14 @@
             right: 40px;
             z-index: 10;
         }
+        #up{
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            bottom: 320px;
+            right: 40px;
+            z-index: 10;
+        }
         .serf{
             height: 100px;
             width: 320px;
@@ -87,8 +95,10 @@
             </div>
         </div>
     </div>
+    <div id="up" ><a href="#top">sss</a></div>
     <!-- 因为放上面会挤压search 直接放下面会导致图层问题，所以放下面且加上index -->
     <div class="content">
+        <div id="top"></div>
         {{ ok_content|safe }}
     </div>
 </div>
@@ -120,11 +130,20 @@
 
     // 添加鼠标离开事件监听器
     searchElement.addEventListener('mouseleave', function() {
-        if(!isComposing){
-            serfDiv.style.display = 'none'; // 当鼠标离开时，设置 display 为 none
+        // 检查 searchElement 或其内部的任何元素是否是活动元素
+        if (!(searchElement.contains(document.activeElement))) {
+            serfDiv.style.display = 'none'; // 当鼠标离开且元素没有焦点时，设置 display 为 none
         }
-
     });
+
+    // 添加点击事件监听器到整个文档
+    document.addEventListener('click', function(event) {
+        // 检查点击的元素是否是 searchElement 或其内部的任何元素
+        if (!searchElement.contains(event.target)) {
+            serfDiv.style.display = 'none'; // 当点击的元素不是 searchElement 或其内部的任何元素时，设置 display 为 none
+        }
+    });
+
 
 
     searchElement.addEventListener("compositionstart", function(event) {
