@@ -72,6 +72,7 @@
         }
     </style>
     <script src="/static/scripts/http_unpkg.com_oh-my-live2d@latest.js"></script>
+    <script src="/static/scripts/jquery.min.js"></script>
 </head>
 <body>
 
@@ -116,10 +117,9 @@
         // 如果输入值不为空
         if (searchTerm.trim() !== "") {
             // 构建跳转 URL，并将搜索词作为参数传递
-            var url = "?name=" + encodeURIComponent(searchTerm);
-
-            // 跳转到新页面
-            window.location.href = url;
+            $.get('/?name=' + encodeURIComponent(searchTerm), function(data) {
+                $('.content').html(data);
+            });
         }
     });
 
@@ -138,9 +138,7 @@
         if(!isComposing){
             serfDiv.style.display = 'none'; // 当鼠标离开时，设置 display 为 none
         }
-
     });
-
 
     searchElement.addEventListener("compositionstart", function(event) {
         isComposing = true;
@@ -149,7 +147,6 @@
     searchElement.addEventListener("compositionend", function(event) {
         isComposing = false;
     });
-
   
 </script>
 </body>
