@@ -38,3 +38,4 @@ gunicorn -w 4 -b 0.0.0.0:8080 app:app
 |------|------|
 | 封面图（左）| [Pixiv](https://www.pixiv.net/en/artworks/113922651) |
 | 阿尼亚Live2D | [Bilibili](https://www.bilibili.com/video/BV1qC4y1S7yo) |
+| L2D组件 | [OhMyLive2D (oml2d.com)](https://oml2d.com/api/functions/loadOml2d.html) |
