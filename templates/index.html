@@ -179,6 +179,16 @@
 
 <script>
     OML2D.loadOml2d({
+        menus: {
+            disable: true
+        },
+        tips: (_, currentIndex) => {
+            return {
+                copyTips: {
+                    message: ['哇酷哇酷！']
+                }
+            };
+        },
         models: [
             {
                 path: '/static/ANIYA-walk/ANIYA.model3.json',
