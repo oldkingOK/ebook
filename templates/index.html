@@ -128,17 +128,12 @@
 
     // 鼠标悬停时更改图像源
     document.getElementById('up').addEventListener('mouseover', function() {
-        upImage.src = '../static/upload_hover.svg'; // 您需要将此路径替换为鼠标悬停时要显示的图像的路径
+        upImage.src = '../static/upload_hover.svg';
     });
 
     // 鼠标离开时恢复原始图像源
     document.getElementById('up').addEventListener('mouseout', function() {
-        upImage.src = '../static/upload.svg'; // 您需要将此路径替换为原始图像的路径
-    });
-
-    // 鼠标离开时恢复原始图像源
-    document.getElementById('up').addEventListener('mouseout', function() {
-        upImage.src = '../static/upload.svg'; // 您需要将此路径替换为原始图像的路径
+        upImage.src = '../static/upload.svg';
     });
 
     document.getElementById("searchForm").addEventListener("submit", function(event) {
@@ -159,7 +154,6 @@
     var serfDiv = document.querySelector(".serf");
     var isComposing = false;
    
-
     // 添加鼠标进入事件监听器
     searchElement.addEventListener('mouseenter', function() {
         serfDiv.style.display = 'block'; // 当鼠标进入时，设置 .serf 的 display 为 block
