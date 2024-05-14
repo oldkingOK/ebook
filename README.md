@@ -1,8 +1,8 @@
-<center>
+<div align="center">
 
 # E-Book
 
-</center>
+</div>
 
 ## 关于
 
