@@ -22,10 +22,22 @@
             width: 500px;
             height: 150px;
             position: fixed;
-            bottom: 20px;
+            bottom: 5px;
             right: 40px;
             z-index: 10;
         }
+        #up{
+            width: 30px;
+            height: 30px;
+            position: fixed;
+            bottom: 140px;
+            right: 140px;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .serf{
             height: 100px;
             width: 320px;
@@ -51,7 +63,7 @@
         .background-container {
             background-attachment: fixed;
             position: relative;
-            height: 100%; /* 使用vh单位设置容器高度为视窗的100% */
+            height: 100%;
             background-image: url('/static/YuukaNoa.png'), url('/static/OIP.jpg'); /* 左右图片的 URL */
             background-size: auto 100%, auto 100%; /* 设置两张背景图片的尺寸，宽度为原始宽度，高度为100% */
             background-position: left top, right top; /* 设置两张背景图片的位置 */
@@ -89,26 +101,44 @@
             </div>
         </div>
     </div>
-    <script>
-        OML2D.loadOml2d({
-            models: [
-                {
-                    path: '/static/ANIYA-walk/ANIYA.model3.json',
-                    position: [60, 60],
-                    scale: 0.06,
-                    stageStyle: {
-                        height: 450
-                    }
-                }
-            ]
-        });
-    </script>
+    <div id="up" ><a href="#top"><img id="upImage" src="../static/upload.svg"></a></div>
     <!-- 因为放上面会挤压search 直接放下面会导致图层问题，所以放下面且加上index -->
     <div class="content">
+        <div id="top"></div>
         {{ ok_content|safe }}
     </div>
 </div>
 <script>
+    OML2D.loadOml2d({
+        models: [
+            {
+                path: '/static/ANIYA-walk/ANIYA.model3.json',
+                position: [60, 60],
+                scale: 0.06,
+                stageStyle: {
+                    height: 450
+                }
+            }
+        ]
+    });
+
+    var upImage = document.getElementById('upImage');
+
+    // 鼠标悬停时更改图像源
+    document.getElementById('up').addEventListener('mouseover', function() {
+        upImage.src = '../static/upload_hover.svg'; // 您需要将此路径替换为鼠标悬停时要显示的图像的路径
+    });
+
+    // 鼠标离开时恢复原始图像源
+    document.getElementById('up').addEventListener('mouseout', function() {
+        upImage.src = '../static/upload.svg'; // 您需要将此路径替换为原始图像的路径
+    });
+
+    // 鼠标离开时恢复原始图像源
+    document.getElementById('up').addEventListener('mouseout', function() {
+        upImage.src = '../static/upload.svg'; // 您需要将此路径替换为原始图像的路径
+    });
+
     document.getElementById("searchForm").addEventListener("submit", function(event) {
         // 阻止默认的表单提交行为
         event.preventDefault();
@@ -135,8 +165,17 @@
 
     // 添加鼠标离开事件监听器
     searchElement.addEventListener('mouseleave', function() {
-        if(!isComposing){
-            serfDiv.style.display = 'none'; // 当鼠标离开时，设置 display 为 none
+        // 检查 searchElement 或其内部的任何元素是否是活动元素
+        if (!(searchElement.contains(document.activeElement))) {
+            serfDiv.style.display = 'none'; // 当鼠标离开且元素没有焦点时，设置 display 为 none
+        }
+    });
+
+    // 添加点击事件监听器到整个文档
+    document.addEventListener('click', function(event) {
+        // 检查点击的元素是否是 searchElement 或其内部的任何元素
+        if (!searchElement.contains(event.target)) {
+            serfDiv.style.display = 'none'; // 当点击的元素不是 searchElement 或其内部的任何元素时，设置 display 为 none
         }
     });
 
