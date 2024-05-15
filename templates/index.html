@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/static/favicon.ico">
     <title>eBook++</title>
     <style>
         body {
@@ -80,7 +81,7 @@
             left: 50%; /* 将内容居中 */
             transform: translateX(-50%); /* 水平居中 */
             width: 80%; /* 假设内容占据的宽度为整个页面的80% */
-            text-align: center; /* 文字居中 */
+            text-align: left; /* 文字居中 */
             color: #191616; /* 文字颜色 */
             padding: 20px; /* 内边距 */
             background-color: rgba(224, 224, 224, 0.4); /* 背景色，透明度为50% */
@@ -117,7 +118,7 @@
     </div>
     <div class="content">
         <div id="top"></div>
-        <div class="ok_content">
+        <div class="ok_content" style="margin: 0 15% 0 15%">
             <h1>E-Book</h1>    
         </div>
     </div>
@@ -162,7 +163,7 @@
     <script type="text/javascript">
         (function($){
             $.fn.snow = function(options){
-                var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'9999', 'top': '-50px', 'cursor': 'pointer'}).html('❄'),
+                var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'50', 'top': '-50px', 'user-select': 'none'}).html('❄'),
                     documentHeight  = $(document).height(),
                     documentWidth   = $(document).width(),
                     defaults = {
@@ -205,7 +206,7 @@
     var a_idx = 0;
     jQuery(document).ready(function($) {
         $("body").click(function(e) {
-            var a = new Array("欲买桂花同载酒","轻盈的风","浮世景色百千年依旧","愿你今晚得享安睡","请随我一同避雨吧","嗯？天晴了吗？","烟花易逝","拾花鸟之一趣","照月风之长路","雪霁银装素","桔高映琼枝");
+            var a = new Array("欲买桂花同载酒","轻盈的风","浮世景色百千年依旧","愿你今晚得享安睡","请随我一同避雨吧","嗯？天晴了吗？","烟花易逝","拾花鸟之一趣","照月风之长路","雪霁银装素","桔高映琼枝","深山踏红叶","耳畔闻鹿鸣","白露与清梦","胧幻与此生","若比君侧时","皆算久长事");
             var $i = $("<span></span>").text(a[a_idx]);
             a_idx = (a_idx + 1) % a.length;
             var x = e.pageX,
