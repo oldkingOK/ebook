@@ -36,6 +36,7 @@ gunicorn -w 4 -b 0.0.0.0:8080 app:app
 
 | 元素 | 来源 |
 |------|------|
-| 封面图（左）| [Pixiv](https://www.pixiv.net/en/artworks/113922651) |
-| 阿尼亚Live2D | [Bilibili](https://www.bilibili.com/video/BV1qC4y1S7yo) |
-| L2D组件 | [OhMyLive2D (oml2d.com)](https://oml2d.com/api/functions/loadOml2d.html) |
+| 封面图（左）| [Pixiv @ハブリー](https://www.pixiv.net/en/artworks/113922651) |
+| 阿尼亚Live2D | [Bilibili @天才设计学家](https://www.bilibili.com/video/BV1qC4y1S7yo) |
+| L2D组件 | [oh-my-live2d](https://github.com/oh-my-live2d/oh-my-live2d) |
+| 鼠标指针 | [shuiche-it/cnblog-mouse](https://github.com/shuiche-it/cnblog-mouse) |
