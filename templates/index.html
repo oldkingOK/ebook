@@ -118,7 +118,36 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript">
+    /* 鼠标特效 */
+    var a_idx = 0;
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+            var a = new Array("欲买桂花同载酒","轻盈的风","浮世景色百千年依旧","愿你今晚得享安睡","请随我一同避雨吧","嗯？天晴了吗？","烟花易逝","拾花鸟之一趣","照月风之长路","雪霁银装素","桔高映琼枝");
+            var $i = $("<span></span>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+            var x = e.pageX,
+                y = e.pageY;
+            $i.css({
+                "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+                "top": y - 20,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+            });
+            $("body").append($i);
+            $i.animate({
+                    "top": y - 180,
+                    "opacity": 0
+                },
+                3000,
+                function() {
+                    $i.remove();
+                });
+        });
+    });
+</script>
 <script>
     var upImage = document.getElementById('upImage');
 
