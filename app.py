@@ -14,6 +14,7 @@ def before_first_request():
     cursor = conn.cursor()
 
 INDEX = "./index.html"
+OK_CONTENT = "./ok_content.html"
 @app.route('/')
 def sum_numbers():
     global conn, cursor
@@ -23,17 +24,21 @@ def sum_numbers():
         return render_template(INDEX)
 
     # Execute a SELECT query to retrieve the record with the given name
-    cursor.execute("SELECT Path, Text FROM ebook WHERE name LIKE ?", (f"%{name}%",))
+    cursor.execute("SELECT Path, Name, Text FROM ebook WHERE name LIKE ?", (f"%{name}%",))
     record = cursor.fetchall()
 
     r = ""
     if record:
         # If the record exists, return the result
-        for path, text in record:
-            r += '<div style="border:#cccccc solid 2px; padding-left: 10%">'
-            r += '<em style="margin-top: 8%; display: block">{}</em>'.format(path)
-            r += text
-            r += "</div>"
+        records = []
+        for path, name, text in record:
+            records.append({
+                "path": path,
+                "name": name,
+                "text": text
+            })
+        return render_template(OK_CONTENT, records=records)
+
     else:
         # If the record does not exist, return an error message
         r += "未找到记录"
