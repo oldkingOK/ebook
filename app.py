@@ -30,8 +30,8 @@ def sum_numbers():
     if record:
         # If the record exists, return the result
         for path, text in record:
-            r += '<div style="border:#cccccc solid 2px">'
-            r += "<h2>{}</h2>".format(path)
+            r += '<div style="border:#cccccc solid 2px; padding-left: 10%">'
+            r += '<em style="margin-top: 8%; display: block">{}</em>'.format(path)
             r += text
             r += "</div>"
     else:
