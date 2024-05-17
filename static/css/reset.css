@@ -1,0 +1,67 @@
+body {
+    cursor: url('/static/cursor/1.png'), auto;
+}
+.arrow{
+    width: 0;
+    height: 0;
+    border-right: 18px solid #862121;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    display: block;
+}
+.search{
+    width: 500px;
+    height: 150px;
+    position: fixed;
+    bottom: 5px;
+    right: 20px;
+    z-index: 10;
+}
+
+.serf{
+    height: 100px;
+    width: 320px;
+    margin: 36px 0 0 150px;
+    border: #000000 solid 2px;
+    box-sizing: border-box;
+    padding-left: 50px;
+    background-color: #cccccc;
+    display: none;
+}
+
+.search:hover .arrow{
+    border-right: 18px solid #ec5b0c;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+html{
+    overflow: hidden;
+}
+.background-container {
+    background-attachment: fixed;
+    position: relative;
+    height: 100%;
+    background-image: url('/static/YuukaNoa.png'), url('/static/OIP.jpg'); /* 左右图片的 URL */
+    background-size: auto 100%, auto 100%; /* 设置两张背景图片的尺寸，宽度为原始宽度，高度为100% */
+    background-position: left top, right top; /* 设置两张背景图片的位置 */
+    background-repeat: no-repeat; /* 禁止背景图片重复 */
+}
+.content {
+    overflow: scroll;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 50%; /* 将内容居中 */
+    transform: translateX(-50%); /* 水平居中 */
+    width: 80%; /* 假设内容占据的宽度为整个页面的80% */
+    text-align: left; /* 文字居中 */
+    color: #191616; /* 文字颜色 */
+    padding: 20px; /* 内边距 */
+    background-color: rgba(224, 224, 224, 0.4); /* 背景色，透明度为50% */
+}
