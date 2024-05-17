@@ -5,7 +5,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="/static/favicon.ico">
     <title>eBook++</title>
     <style>
         body {
@@ -29,17 +28,6 @@
             bottom: 5px;
             right: 20px;
             z-index: 10;
-        }
-        #up{
-            width: 30px;
-            height: 30px;
-            position: fixed;
-            bottom: 20%;
-            right: 15%;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .serf{
@@ -86,16 +74,16 @@
             padding: 20px; /* 内边距 */
             background-color: rgba(224, 224, 224, 0.4); /* 背景色，透明度为50% */
         }
-        .icon:hover path{
-            fill: #1296db;
-        }
     </style>
+
     <script src="/static/scripts/http_unpkg.com_oh-my-live2d@latest.js"></script>
     <script src="/static/scripts/jquery.min.js"></script>
     <script src="/static/scripts/mouse.min.js"></script>
+    <script src="/static/scripts/gotop.js"></script>
+    <link rel="stylesheet" href="/static/css/cssgotop.css">
 </head>
 <body>
-
+<div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
 <div class="background-container">
     <div class="search">
         <div class="arrow"></div>
@@ -109,15 +97,8 @@
             </div>
         </div>
     </div>
-    <div id="up" >
-        <a href="#top">
-            <svg t="1715667357372" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1176" width="20" height="20" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M724.992 939.068235a60.235294 60.235294 0 0 1-60.054588 59.934118H303.104a59.994353 59.994353 0 0 1-60.054588-59.994353V517.059765H62.042353c-66.258824 0-81.92-38.128941-34.816-85.293177L441.524706 17.468235a60.416 60.416 0 0 1 85.052235 0l414.298353 414.418824c47.104 46.983529 31.503059 85.232941-34.93647 85.232941h-180.946824v421.888z" fill="#d98b2f" p-id="1177"></path>
-            </svg>
-        </a>
-    </div>
+
     <div class="content">
-        <div id="top"></div>
         <div class="ok_content" style="margin: 0 15% 0 15%">
             <h1>E-Book</h1>
         </div>
@@ -233,17 +214,6 @@
     });
 </script>
 <script>
-    var upImage = document.getElementById('upImage');
-
-    // 鼠标悬停时更改图像源
-    document.getElementById('up').addEventListener('mouseover', function() {
-        upImage.src = '../static/upload_hover.svg';
-    });
-
-    // 鼠标离开时恢复原始图像源
-    document.getElementById('up').addEventListener('mouseout', function() {
-        upImage.src = '../static/upload.svg';
-    });
 
     document.getElementById("searchForm").addEventListener("submit", function(event) {
         // 阻止默认的表单提交行为
@@ -261,14 +231,14 @@
     var searchElement = document.querySelector('.search');
     var serfDiv = document.querySelector(".serf");
     var isComposing = false;
-   
+
     // 添加鼠标进入事件监听器
-    searchElement.addEventListener('mouseenter', function() {
+    searchElement.addEventListener('mouseover', function() {
         serfDiv.style.display = 'block'; // 当鼠标进入时，设置 .serf 的 display 为 block
     });
 
     // 添加鼠标离开事件监听器
-    searchElement.addEventListener('mouseleave', function() {
+    searchElement.addEventListener('mouseout', function() {
         // 检查 searchElement 或其内部的任何元素是否是活动元素
         if (!(searchElement.contains(document.activeElement))) {
             serfDiv.style.display = 'none'; // 当鼠标离开且元素没有焦点时，设置 display 为 none
