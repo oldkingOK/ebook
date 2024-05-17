@@ -38,5 +38,7 @@ gunicorn -w 4 -b 0.0.0.0:8080 app:app
 |------|------|
 | 封面图（左）| [Pixiv @ハブリー](https://www.pixiv.net/en/artworks/113922651) |
 | 阿尼亚Live2D | [Bilibili @天才设计学家](https://www.bilibili.com/video/BV1qC4y1S7yo) |
-| L2D组件 | [oh-my-live2d](https://github.com/oh-my-live2d/oh-my-live2d) |
-| 鼠标指针 | [shuiche-it/cnblog-mouse](https://github.com/shuiche-it/cnblog-mouse) |
+| L2D组件 | [github @oh-my-live2d](https://github.com/oh-my-live2d/oh-my-live2d) |
+| 鼠标指针 | [github @shuiche-it/cnblog-mouse](https://github.com/shuiche-it/cnblog-mouse) |
+| 上拉悬挂喵 | [github @MisakaTAT/GoTop](https://github.com/MisakaTAT/GoTop) |
+| 雪花和鼠标特效 | [博客园 @ywheunji](https://www.cnblogs.com/ywheunji/p/12290702.html) |
