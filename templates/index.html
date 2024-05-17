@@ -10,7 +10,6 @@
     <script src="/static/scripts/jquery.min.js"></script>
     <script src="/static/scripts/mouse.min.js"></script>
     <script src="/static/scripts/gotop.js"></script>
-    <script type="text/javascript" src="/static/scripts/cursorReset.js"></script>
     <script type="text/javascript" src="/static/scripts/xueHua.js"></script>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/cssgotop.css">
@@ -19,6 +18,8 @@
 <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
 <div class="background-container">
     <div class="search">
+
+
         <div class="arrow"></div>
         <div class="serf" >
             <h2 style="margin-bottom: 5px">Search Page</h2>
@@ -47,6 +48,34 @@
     })
 </script>
 
+<script>
+    // 光标 URL 数组
+    var cursorUrls = [
+        "/static/cursor/1.png",
+        "/static/cursor/2.png",
+        "/static/cursor/3.png",
+        "/static/cursor/4.png",
+        "/static/cursor/5.png",
+        "/static/cursor/6.png",
+        "/static/cursor/7.png",
+        "/static/cursor/8.png",
+        "/static/cursor/9.png"
+    ];
+    var currentIndex = 0;
+
+    // 点击事件处理函数
+    function changeCursor() {
+        // 获取下一个光标 URL
+        var nextCursorUrl = cursorUrls[currentIndex];
+        // 更新 CSS
+        document.body.style.cursor = 'url(' + nextCursorUrl + '), auto';
+        // 更新当前索引
+        currentIndex = (currentIndex + 1) % cursorUrls.length;
+    }
+
+    // 为 body 添加点击事件监听器
+    document.body.addEventListener('click', changeCursor);
+</script>
 
 <script>
 
@@ -69,14 +98,15 @@
 
     // 添加鼠标进入事件监听器
     searchElement.addEventListener('mouseover', function() {
-        serfDiv.style.display = 'block'; // 当鼠标进入时，设置 .serf 的 display 为 block
+        serfDiv.style.right = '4%'; // 当鼠标进入时，设置 .serf 的 display 为 block
+
     });
 
     // 添加鼠标离开事件监听器
     searchElement.addEventListener('mouseout', function() {
         // 检查 searchElement 或其内部的任何元素是否是活动元素
         if (!(searchElement.contains(document.activeElement))) {
-            serfDiv.style.display = 'none'; // 当鼠标离开且元素没有焦点时，设置 display 为 none
+            serfDiv.style.right = '-100%'; // 当鼠标离开且元素没有焦点时，设置 display 为 none
         }
     });
 
@@ -84,13 +114,13 @@
     document.addEventListener('click', function(event) {
         // 检查点击的元素是否是 searchElement 或其内部的任何元素
         if (!searchElement.contains(event.target)) {
-            serfDiv.style.display = 'none'; // 当点击的元素不是 searchElement 或其内部的任何元素时，设置 display 为 none
+            serfDiv.style.right = '-100%'; // 当点击的元素不是 searchElement 或其内部的任何元素时，设置 display 为 none
         }
     });
 
     searchElement.addEventListener("compositionstart", function(event) {
         isComposing = true;
-        serfDiv.style.display = "block";
+        serfDiv.style.right = '4%';
     });
     searchElement.addEventListener("compositionend", function(event) {
         isComposing = false;

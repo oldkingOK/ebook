@@ -29,7 +29,10 @@ body {
     box-sizing: border-box;
     padding-left: 50px;
     background-color: #cccccc;
-    display: none;
+    display: block;
+    position: absolute;
+    right: -100%;
+    transition: all 0.2s linear;
 }
 
 .search:hover .arrow{
