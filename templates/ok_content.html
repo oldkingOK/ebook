@@ -1,0 +1,23 @@
+{% for record in records %}
+<div style="border:#cccccc solid 2px; padding-left: 10%">
+    <em style="margin-top: 8%; display: block">
+        {{ record.path }}
+    </em>
+    <h1 style="font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;">
+        {{ record.name }}
+    </h1>
+    <div class="ok_text">
+        {{ record.text|safe }}
+    </div>
+</div>
+{% endfor %}
+<script>
+    // 把原来的h1变为h2，避免和原标题冲突
+    $('.ok_text').find('h1').replaceWith(function() {
+        return $('<h2/>', {
+            html: $(this).html()
+        });
+    });
+    // 将失效的图片替换为aniyah
+    $('.ok_text').find('img').replaceWith('<img height=128 width=128 src="/static/aniyah_img.png" alt="aniya_eat">');
+</script>
