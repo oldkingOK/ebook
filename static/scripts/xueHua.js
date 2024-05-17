@@ -39,32 +39,3 @@ $(function(){
         newOn: 200  /* 定义密集程度，数字越小越密集 */
     });
 });
-/* 鼠标特效 */
-var a_idx = 0;
-jQuery(document).ready(function($) {
-    $("body").click(function(e) {
-        var a = new Array("欲买桂花同载酒","轻盈的风","浮世景色百千年依旧","愿你今晚得享安睡","请随我一同避雨吧","嗯？天晴了吗？","烟花易逝","拾花鸟之一趣","照月风之长路","雪霁银装素","桔高映琼枝","深山踏红叶","耳畔闻鹿鸣","白露与清梦","胧幻与此生","若比君侧时","皆算久长事");
-        var $i = $("<span></span>").text(a[a_idx]);
-        a_idx = (a_idx + 1) % a.length;
-        var x = e.pageX,
-            y = e.pageY;
-        $i.css({
-            "z-index": 30,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "user-select": "none",
-            "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
-        });
-        $("body").append($i);
-        $i.animate({
-                "top": y - 180,
-                "opacity": 0
-            },
-            3000,
-            function() {
-                $i.remove();
-            });
-    });
-});

@@ -6,11 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>eBook++</title>
-    <script src="/static/scripts/live2D.js"></script>
     <script src="/static/scripts/jquery.min.js"></script>
     <script src="/static/scripts/mouse.min.js"></script>
     <script src="/static/scripts/gotop.js"></script>
     <script type="text/javascript" src="/static/scripts/xueHua.js"></script>
+    <script src="/static/scripts/live2D.js"></script>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/cssgotop.css">
 </head>
@@ -18,7 +18,6 @@
 <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -999px;"></div>
 <div class="background-container">
     <div class="search">
-
 
         <div class="arrow"></div>
         <div class="serf" >
@@ -49,6 +48,35 @@
 </script>
 
 <script>
+    /* 鼠标特效 */
+    var a_idx = 0;
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+            var a = new Array("欲买桂花同载酒","轻盈的风","浮世景色百千年依旧","愿你今晚得享安睡","请随我一同避雨吧","嗯？天晴了吗？","烟花易逝","拾花鸟之一趣","照月风之长路","雪霁银装素","桔高映琼枝","深山踏红叶","耳畔闻鹿鸣","白露与清梦","胧幻与此生","若比君侧时","皆算久长事");
+            var $i = $("<span></span>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+            var x = e.pageX,
+                y = e.pageY;
+            $i.css({
+                "z-index": 30,
+                "top": y - 20,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "user-select": "none",
+                "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+            });
+            $("body").append($i);
+            $i.animate({
+                    "top": y - 180,
+                    "opacity": 0
+                },
+                3000,
+                function() {
+                    $i.remove();
+                });
+        });
+    });
     // 光标 URL 数组
     var cursorUrls = [
         "/static/cursor/1.png",
