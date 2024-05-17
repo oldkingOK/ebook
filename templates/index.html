@@ -6,80 +6,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>eBook++</title>
-    <style>
-        body {
-            cursor: url('/static/cursor/1.png'), auto;
-        }
-        .arrow{
-            width: 0;
-            height: 0;
-            border-right: 18px solid #862121;
-            border-top: 18px solid transparent;
-            border-bottom: 18px solid transparent;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            display: block;
-        }
-        .search{
-            width: 500px;
-            height: 150px;
-            position: fixed;
-            bottom: 5px;
-            right: 20px;
-            z-index: 10;
-        }
-
-        .serf{
-            height: 100px;
-            width: 320px;
-            margin: 36px 0 0 150px;
-            border: #000000 solid 2px;
-            box-sizing: border-box;
-            padding-left: 50px;
-            background-color: #cccccc;
-            display: none;
-        }
- 
-        .search:hover .arrow{
-            border-right: 18px solid #ec5b0c;
-        }
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        html{
-            overflow: hidden;
-        }
-        .background-container {
-            background-attachment: fixed;
-            position: relative;
-            height: 100%;
-            background-image: url('/static/YuukaNoa.png'), url('/static/OIP.jpg'); /* 左右图片的 URL */
-            background-size: auto 100%, auto 100%; /* 设置两张背景图片的尺寸，宽度为原始宽度，高度为100% */
-            background-position: left top, right top; /* 设置两张背景图片的位置 */
-            background-repeat: no-repeat; /* 禁止背景图片重复 */
-        }
-        .content {
-            overflow: scroll;
-            position: absolute;
-            top: 0;
-            height: 100%;
-            left: 50%; /* 将内容居中 */
-            transform: translateX(-50%); /* 水平居中 */
-            width: 80%; /* 假设内容占据的宽度为整个页面的80% */
-            text-align: left; /* 文字居中 */
-            color: #191616; /* 文字颜色 */
-            padding: 20px; /* 内边距 */
-            background-color: rgba(224, 224, 224, 0.4); /* 背景色，透明度为50% */
-        }
-    </style>
-
-    <script src="/static/scripts/http_unpkg.com_oh-my-live2d@latest.js"></script>
+    <script src="/static/scripts/live2D.js"></script>
     <script src="/static/scripts/jquery.min.js"></script>
     <script src="/static/scripts/mouse.min.js"></script>
     <script src="/static/scripts/gotop.js"></script>
+    <script type="text/javascript" src="/static/scripts/cursorReset.js"></script>
+    <script type="text/javascript" src="/static/scripts/xueHua.js"></script>
+    <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/cssgotop.css">
 </head>
 <body>
@@ -105,34 +38,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    // 光标 URL 数组
-    var cursorUrls = [
-        "/static/cursor/1.png",
-        "/static/cursor/2.png",
-        "/static/cursor/3.png",
-        "/static/cursor/4.png",
-        "/static/cursor/5.png",
-        "/static/cursor/6.png",
-        "/static/cursor/7.png",
-        "/static/cursor/8.png",
-        "/static/cursor/9.png"
-    ];
-    var currentIndex = 0;
 
-    // 点击事件处理函数
-    function changeCursor() {
-        // 获取下一个光标 URL
-        var nextCursorUrl = cursorUrls[currentIndex];
-        // 更新 CSS
-        document.body.style.cursor = 'url(' + nextCursorUrl + '), auto';
-        // 更新当前索引
-        currentIndex = (currentIndex + 1) % cursorUrls.length;
-    }
-
-    // 为 body 添加点击事件监听器
-    document.body.addEventListener('click', changeCursor);
-</script>
 
 <script type="text/javascript">
     $.shuicheMouse({
@@ -141,78 +47,7 @@
     })
 </script>
 
-    <script type="text/javascript">
-        (function($){
-            $.fn.snow = function(options){
-                var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'50', 'top': '-50px', 'user-select': 'none'}).html('❄'),
-                    documentHeight  = $(document).height(),
-                    documentWidth   = $(document).width(),
-                    defaults = {
-                        minSize     : 10,
-                        maxSize     : 20,
-                        newOn       : 1000,
-                        flakeColor  : "#e0c0ce" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
-                    },
-                    options = $.extend({}, defaults, options);
-                var interval= setInterval( function(){
-                    var startPositionLeft = Math.random() * documentWidth - 100,
-                        startOpacity = 0.5 + Math.random(),
-                        sizeFlake = options.minSize + Math.random() * options.maxSize,
-                        endPositionTop = documentHeight - 200,
-                        endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
-                        durationFall = documentHeight * 10 + Math.random() * 5000;
-                    $flake.clone().appendTo('body').css({
-                        left: startPositionLeft,
-                        opacity: startOpacity,
-                        'font-size': sizeFlake,
-                        color: options.flakeColor
-                    }).animate({
-                        top: endPositionTop,
-                        left: endPositionLeft,
-                        opacity: 0.2
-                    },durationFall,'linear',function(){
-                        $(this).remove()
-                    });
-                }, options.newOn);
-            };
-        })(jQuery);
-        $(function(){
-            $.fn.snow({
-                minSize: 5, /* 定义雪花最小尺寸 */
-                maxSize: 80,/* 定义雪花最大尺寸 */
-                newOn: 200  /* 定义密集程度，数字越小越密集 */
-            });
-        });
-    /* 鼠标特效 */
-    var a_idx = 0;
-    jQuery(document).ready(function($) {
-        $("body").click(function(e) {
-            var a = new Array("欲买桂花同载酒","轻盈的风","浮世景色百千年依旧","愿你今晚得享安睡","请随我一同避雨吧","嗯？天晴了吗？","烟花易逝","拾花鸟之一趣","照月风之长路","雪霁银装素","桔高映琼枝","深山踏红叶","耳畔闻鹿鸣","白露与清梦","胧幻与此生","若比君侧时","皆算久长事");
-            var $i = $("<span></span>").text(a[a_idx]);
-            a_idx = (a_idx + 1) % a.length;
-            var x = e.pageX,
-                y = e.pageY;
-            $i.css({
-                "z-index": 30,
-                "top": y - 20,
-                "left": x,
-                "position": "absolute",
-                "font-weight": "bold",
-                "user-select": "none",
-                "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
-            });
-            $("body").append($i);
-            $i.animate({
-                    "top": y - 180,
-                    "opacity": 0
-                },
-                3000,
-                function() {
-                    $i.remove();
-                });
-        });
-    });
-</script>
+
 <script>
 
     document.getElementById("searchForm").addEventListener("submit", function(event) {
