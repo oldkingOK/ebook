@@ -24,7 +24,7 @@
             <h2 style="margin-bottom: 5px">Search Page</h2>
             <div class="ser">
                 <form id="searchForm"  method="GET">
-                    <input type="text" id="searchInput" name="query" placeholder="Enter your search term">
+                    <input type="text" id="searchInput" name="query" placeholder="Enter your search term" style="outline:none">
                     <button type="submit">Search</button>
                 </form>
             </div>
@@ -114,15 +114,22 @@
         var searchTerm = document.getElementById("searchInput").value;
         // 如果输入值不为空
         if (searchTerm.trim() !== "") {
-            $.get('/?name=' + encodeURIComponent(searchTerm), function(data) {
-                $('.ok_content').html(data);
+            $('.ok_content').fadeOut(300, function() {
+                $.get('/?name=' + encodeURIComponent(searchTerm), function(data) {
+                    $('.ok_content').html(data);
+                    $('.ok_content').fadeIn(800);
+                });
             });
+           
+            document.getElementById("searchInput").value = ""; 
+            
+            document.dispatchEvent(new Event("click"));
+            
         }
     });
 
     var searchElement = document.querySelector('.search');
     var serfDiv = document.querySelector(".serf");
-    var isComposing = false;
 
     // 添加鼠标进入事件监听器
     searchElement.addEventListener('mouseover', function() {
@@ -146,13 +153,6 @@
         }
     });
 
-    searchElement.addEventListener("compositionstart", function(event) {
-        isComposing = true;
-        serfDiv.style.right = '4%';
-    });
-    searchElement.addEventListener("compositionend", function(event) {
-        isComposing = false;
-    });
 </script>
 
 <script>
